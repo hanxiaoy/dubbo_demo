@@ -14,14 +14,13 @@
                     http://code.alibabatech.com/schema/dubbo/dubbo.xsd  ">
 
 
-    <dubbo:application name="hello-dubbo" />
-
-    <!-- 本机 伪集群 测试 -->
-    <dubbo:registry  protocol="zookeeper"  address=""  />
-    <dubbo:protocol name="dubbo" port="20880" />
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="hello-dubbo-client" />
 
 
-    <bean id="demoService" class="org.dubbo.service.impl.TestServiceImpl" />
-    <dubbo:service interface="org.dubbo.service.TestService"  ref="demoService" />       <!-- 和本地bean一样实现服务 -->
+
+    <!-- 使用本地伪集群注册中心暴露发现服务地址 -->
+    <dubbo:registry  protocol="zookeeper"  address="multicast://224.5.6.7:1234" />         <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+    <dubbo:reference id="demoService" interface="org.dubbo.service.TestService" />
 
 </beans>
