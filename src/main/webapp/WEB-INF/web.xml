@@ -27,10 +27,15 @@
             <load-on-startup>1</load-on-startup>
           </servlet>
 
+            <context-param>
+                <param-name>log4jConfigLocation</param-name>
+                <param-value>classpath:log4j.properties</param-value>
+            </context-param>
+
           <!-- 拦截以html为后缀的请求 -->
           <servlet-mapping>
             <servlet-name>springMvc</servlet-name>
-            <url-pattern>*.mxd</url-pattern>
+            <url-pattern>*.do</url-pattern>
           </servlet-mapping>
 
 

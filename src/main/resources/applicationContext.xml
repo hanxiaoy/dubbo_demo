@@ -18,9 +18,14 @@
     <dubbo:application name="hello-dubbo-client" />
 
 
-
     <!-- 使用本地伪集群注册中心暴露发现服务地址 -->
     <dubbo:registry  protocol="zookeeper"  address="multicast://224.5.6.7:1234" />         <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
-    <dubbo:reference id="demoService" interface="org.dubbo.service.TestService" />
+    <dubbo:reference id="demoService" interface="org.dubbo.service.TestService" >
+    <dubbo:method name="say" timeout="2000" />
+    </dubbo:reference>
 
+    <!--<dubbo:registry address="127.0.0.1:4548" />-->
+    <!--<dubbo:annotation package="org.dubbo.test" />-->
+    <!--<context:component-scan base-package="org.dubbo.test" />-->
+    
 </beans>

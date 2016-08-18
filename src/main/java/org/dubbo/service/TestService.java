@@ -7,5 +7,5 @@ package org.dubbo.service;
  */
 public interface TestService {
 
-    public void say();
+    public String  say(String s);
 }
